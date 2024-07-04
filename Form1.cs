@@ -21,7 +21,7 @@ namespace EmailTestProject
         {
             InitializeComponent();
         }
-        public void sendEmail(string credentialsFileLocation, string addressTo, string body = "", string subject = "", string cc = "", string bcc = "")
+        public void SendEmail(string credentialsFileLocation, string addressTo, string body = "", string subject = "", string cc = "", string bcc = "")
         {   
             // variable = "" means that these parameters are optional, if nothing is passed for them, the default will be used (in this case the default is "")
             // reason for the wierd ordering is so that optional parameters come up in the order of their probabilty of use
@@ -100,7 +100,7 @@ namespace EmailTestProject
 
             //for info on how to send parameters out of order see this
             //https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#:~:text=If%20you%20don%27t%20remember%20the%20order%20of%20the%20parameters%20but%20know%20their%20names%2C%20you%20can%20send%20the%20arguments%20in%20any%20order.
-            sendEmail(credentialsFileLocation: credentialsFileLocation, addressTo: addressTo, body: body, subject: subject, cc: cc, bcc: bcc);
+            SendEmail(credentialsFileLocation: credentialsFileLocation, addressTo: addressTo, body: body, subject: subject, cc: cc, bcc: bcc);
 
             //for this form the above is best as we dont mind sending empty text anyways but if the computer was writing the email
             //the below options may serve better
