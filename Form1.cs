@@ -103,6 +103,7 @@ namespace EmailTestProject
         private string convertFormsMultilineToHTML(string text)
         {
             string formattedString = "";
+
             //split windows forms input into multiline html format for email
             var sr = new StringReader(text);
             List<string> listOfLines = new List<string>();
