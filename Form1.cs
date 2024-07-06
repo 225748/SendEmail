@@ -9,7 +9,6 @@ using Google.Apis.Gmail.v1;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
-using System.Net.Mail;
 
 //uses gmail API instead of smtp as google got rid of "let less secure apps access" feature in favour of API 0-Auth2
 //requires Gmail API package is installed (do via tools and nuget)
@@ -55,8 +54,24 @@ namespace EmailTestProject
                 $"\r\nCC:{cc}" +
                 $"\r\nBcc:{bcc}" +
                 $"\r\nSubject:{subject}" +
-                $"\r\nContent-Type: text/html;charset=utf-8\r\n" +
-                $"\r\n<body>{body}</body>";
+                $"\r\nContent-Type: text/html;charset=utf-8\r\n";// +
+                //$"\r\n<body>{text}</body>";
+
+            var sr = new StringReader(body);
+            List<string> listOfLines = new List<string>();
+            string line;
+            while ((line = sr.ReadLine()) != null)
+            {// rn is for the formatting of the message <br> is line breaks
+                if (line == "")
+                {
+                    Message = Message + "\r\n" + "<br>"; //if we need to skip an empty line, just add another break
+                }
+                else
+                {
+                    Message = Message + "\r\n" + "<br>" + line; //go to a new line before adding this one
+                }
+            }
+
 
             //call your gmail service, giving your credentials
             var service = new GmailService(new BaseClientService.Initializer() { HttpClientInitializer = credential, ApplicationName = ApplicationName });
@@ -81,7 +96,7 @@ namespace EmailTestProject
             string cc = txtCC.Text;
             string bcc = txtBcc.Text;
             string subject = txtSubject.Text;
-            string body = convertFormsMultilineToHTML(txtMessage.Text);
+            string body = txtMessage.Text;
 
             //for info on how to send parameters out of order see this
             //https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#:~:text=If%20you%20don%27t%20remember%20the%20order%20of%20the%20parameters%20but%20know%20their%20names%2C%20you%20can%20send%20the%20arguments%20in%20any%20order.
@@ -99,35 +114,6 @@ namespace EmailTestProject
             //or you can just send them normally, in order
             //sendEmail(credentialsFileLocation, addressTo, body, subject, cc, bcc);
 
-        }
-        private string convertFormsMultilineToHTML(string text)
-        {
-            string formattedString = "";
-            //split windows forms input into multiline html format for email
-            var sr = new StringReader(text);
-            List<string> listOfLines = new List<string>();
-            string line;
-            bool firstLine = true;
-            while ((line = sr.ReadLine()) != null)
-            {// rn is for the formatting of the message <br> is line breaks
-                if (line == "")
-                {
-                    formattedString = formattedString + "\r\n" + "<br>"; //if we need to skip an empty line, just add another break
-                }
-                else
-                {
-                    if (firstLine)
-                    {
-                        formattedString = formattedString + "\r\n" + line; //dont need a new line initially
-                    }
-                    else
-                    {
-                        formattedString = formattedString + "\r\n" + "<br>" + line; //go to a new line before adding this one
-                    }
-                }
-                firstLine = false;
-            }
-            return formattedString;
         }
 
     }
