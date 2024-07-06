@@ -74,6 +74,27 @@ namespace EmailTestProject
         }
 
 
+        //below is for a computer email - should be written in html
+        static string roomType = "Gold ensuite family";
+        static Random rand = new Random(10);
+        static int adults = rand.Next(1, 2);
+        static int kids = rand.Next(0, 2);
+        static string date = "11/09/24";
+
+        string computerbody = "<img src=\"https://www.weather2travel.com/images_blog/butlins-discount-code-holiday-parks-offers.png\" " +
+            "alt=\"Butlin's Venues\" class = \"centre\", width=\"780\" height=\"190\">\r\n" +
+            "\r\n\r\n<h1>Your great stay awaits!</h1>" +
+            "\r\n<p>Thank you for booking your break with Butlin's! " +
+            "The details of your stay can be found below</p>" +
+            $"\r\n<p>Date: {date} " +
+            $"<br /> Room Type: {roomType} " +
+            "<br /> " +
+            $"<br /> Number of guests: " +
+            $"<br /> Adults: {adults} " +
+            $"<br /> Kids: {kids}</p>";
+
+        
+
         private void button1_Click(object sender, System.EventArgs e)
         {
             string credentialsFileLocation = "C:/Users/benja/source/repos/EmailTestProject/bin/Debug/credentials.json";
@@ -81,7 +102,8 @@ namespace EmailTestProject
             string cc = txtCC.Text;
             string bcc = txtBcc.Text;
             string subject = txtSubject.Text;
-            string body = convertFormsMultilineToHTML(txtMessage.Text);
+            string body = convertMultilineStringToHTML(txtMessage.Text);
+            //string body = computerbody; //if want to send the computer email with the button
 
             //for info on how to send parameters out of order see this
             //https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments#:~:text=If%20you%20don%27t%20remember%20the%20order%20of%20the%20parameters%20but%20know%20their%20names%2C%20you%20can%20send%20the%20arguments%20in%20any%20order.
@@ -100,10 +122,9 @@ namespace EmailTestProject
             //sendEmail(credentialsFileLocation, addressTo, body, subject, cc, bcc);
 
         }
-        private string convertFormsMultilineToHTML(string text)
+        private string convertMultilineStringToHTML(string text)
         {
             string formattedString = "";
-
             //split windows forms input into multiline html format for email
             var sr = new StringReader(text);
             List<string> listOfLines = new List<string>();
