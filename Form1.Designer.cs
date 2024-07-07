@@ -58,6 +58,7 @@
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(454, 20);
             this.txtTo.TabIndex = 0;
+            this.txtTo.Text = "benjaminjfranklin99@gmail.com";
             // 
             // txtSubject
             // 
