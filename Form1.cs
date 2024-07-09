@@ -124,14 +124,15 @@ namespace EmailTestProject
             "<br />Butlin’s Minehead,<br />Warren Road,<br />Minehead,<br />Somerset,<br />TA24 5SH" +
             "<br /><br /><a href=\"https://www.google.co.uk/maps/place/Butlin's+Minehead+Resort/@51.2066906,-3.4614799,17z/data=!3m1!4b1!4m8!3m7!1s0x486de75601c5033b:0xdf889f0748035f07!5m2!4m1!1i2!8m2!3d51.2066906!4d-3.4614799\">Find us on Google Maps</a>" +
             "<br /><br />General enquiries: 0330 100 6649<br />Special requirements: 0330 100 9334 (select option 2)" +
-            "<br /><br />ARRIVING VIA PUBLIC TRANSPORT?\r\n\r\nIf you're arriving by public transport, you'll need to head to the West Entrance, " +
+            "<br /><br />ARRIVING VIA PUBLIC TRANSPORT?" +
+            "<br />If you're arriving by public transport, you'll need to head to the West Entrance, " +
             "where our team will be ready to direct to your check-in location." +
             "<br /><br />From Minehead Station, the resort is only a 10 minute walk, with scenic views along the way. " +
             "<a href=\"https://maps.app.goo.gl/RjwU3fuhUeZFsGhV9\">Click here for directions.</a>" +
             "<img src=\"https://prod.butlins-prod.magnolia-platform.com/.imaging/focalpoint/landscape2-1/1000x/dam/jcr:1f134d14-088d-4eba-a0f3-46fbbba5cf0f/Family-Images/Resorts/Butlins-Resorts-Map-750px.jpg\" " +
             "alt=\"Uk Map of Butlins Sites\" class = \"centre\">" +
             "</p><hr><P>" +
-            "If you need any more assistance please visit our website <a href=\"https://www.butlins.com/\">www.butlins.com</a>" +
+            "If you need any more assistance please visit <a href=\"https://www.butlins.com/\">our website</a>" +
             $"<br /> We can't wait to see you!" +
             $"" +
             $"</body>";
